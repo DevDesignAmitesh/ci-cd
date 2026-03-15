@@ -1,7 +1,7 @@
 import axios from "axios";
 import { describe, it, expect } from "bun:test";
 
-const BASE_URL = "http://localhost:3000";
+const BASE_URL = "https://uncombustive-scripturally-thomas.ngrok-free.dev";
 
 const uniqueEmail = Math.random().toString();
 const password = "password";

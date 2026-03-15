@@ -12,6 +12,10 @@ type User = {
 
 const users: User[] = [];
 
+app.get("/", (_, res) => {
+  res.send("heloo")
+})
+
 app.post("/signup", (req, res) => {
   const { email, password } = req.body as {
     email: string | undefined;
