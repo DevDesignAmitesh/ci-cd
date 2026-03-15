@@ -9,7 +9,7 @@ jobs:
   Continuous-Integration:
 
     name: Runs the tests for the backend app
-    runs_on: ubuntu-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: checkout repo
