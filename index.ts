@@ -49,6 +49,8 @@ app.post("/signup", (req, res) => {
     pasword,
   });
 
+
+  
   return res.status(201).json({
     message: "signup successfull",
     data: {
