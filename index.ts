@@ -7,32 +7,32 @@ app.use(express.json());
 type User = {
   id: string;
   email: string;
-  password: string;
+  pasword: string;
 };
 
 const users: User[] = [];
 
 app.get("/", (_, res) => {
-  res.send("heloo")
-})
+  res.send("heloo");
+});
 
 app.post("/signup", (req, res) => {
-  const { email, password } = req.body as {
+  const { email, pasword } = req.body as {
     email: string | undefined;
-    password: string | undefined;
+    pasword: string | undefined;
   };
 
-  console.log("email ", email)
-  console.log("password ", password)
+  console.log("email ", email);
+  console.log("pasword ", pasword);
 
-  if (!email || !password) {
+  if (!email || !pasword) {
     return res.status(400).json({
       message: "invalid inputs",
     });
   }
 
-  console.log("req reaching here??")
-  
+  console.log("req reaching here??");
+
   const existingUser = users.find((usr) => usr.email === email);
 
   if (existingUser) {
@@ -46,7 +46,7 @@ app.post("/signup", (req, res) => {
   users.push({
     id: userId,
     email,
-    password,
+    pasword,
   });
 
   return res.status(201).json({
