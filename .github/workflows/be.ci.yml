@@ -3,6 +3,9 @@ name: CI FOR BACKEND BRANCH
 on:
   push:
     branches: [ backend ]
+    
+  pull_request:
+    branches: [ backend ]
   
 jobs:
 
