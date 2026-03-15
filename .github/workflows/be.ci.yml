@@ -1,0 +1,24 @@
+name: CI FOR BACKEND BRANCH
+
+on:
+  push:
+    branches: [ backend ]
+  
+jobs:
+
+  Continuous-Integration:
+
+    name: Runs Test when pushed the code for the backend
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout the repo
+        uses: actions/checkout@v3
+
+      - name: setup bun
+        run: npm install -g bun
+
+      - name: install deps
+        run: bun install
+
+      - name: run tests
+        run: bun run test
