@@ -1,0 +1,58 @@
+name: just learning boiii
+
+on:
+  push:
+    branches:
+      - main
+      - backend
+  pull_request:
+    branches:
+      - backend
+
+jobs:
+
+  Continuous Integration:
+
+    name: idk bruhh just lagging
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: clone the repo
+        uses: '' # some actions
+
+      # WITHOUT DOCKER
+
+      # - name: setup node/bun/pnpm
+      #   uses: '' # some actions
+
+      # - name: install deps
+      #   run: npm/bun/pnpm install
+
+      # - name: run tests
+      #   run: npm/bun/pnpm run test
+
+      # - name: run build
+      #   run: npm/bun/pnpm build
+
+      - name: login to docker
+        uses: '' # some actions
+        with:
+          username: ${{ secrets.DOCKER_USERNAME }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
+
+      - name: build and push to docker
+        uses: '' # some actions
+        with:
+          context: .
+          file: ./dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_USERNAME }}/image:latest
+
+      - name: ssh into server and deploy on the server
+        uses: '' # some actions
+        script: |
+          sudo docker pull ${{ secrets.DOCKER_USERNAME }}/image:latest
+          sudo docker stop image
+          sudo docker rm image
+          sudo docker -d -p 3000:3000 ${{ secrets.DOCKER_USERNAME }}/image:latest
