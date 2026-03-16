@@ -27,4 +27,16 @@ jobs:
           context: .
           file: ./dockerfile
           push: true
-          tags: amitesh252/learn-ci-cd:latest
+          tags: ${{ secrets.DOCKER_USERNAME }}/learn-ci-cd:latest
+
+      - name: deploy to ec2
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            sudo docker pull ${{ secrets.DOCKER_USERNAME }}/learn-ci-cd:latest
+            sudo docker stop learn-ci-cd || true
+            sudo docker rm learn-ci-cd || true
+            sudo docker run -d --name learn-ci-cd -p 5555:3000 ${{ secrets.DOCKER_USERNAME }}/learn-ci-cd:latest
